@@ -89,3 +89,35 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int
+sys_nice(void)
+{
+    int pid;
+    int priority;
+
+    if(argint(0, &(pid)) < 0 || argint(1, &priority) < 0)
+      return -1;
+
+    return nice(pid, priority);
+}
+
+int
+sys_lock(void){
+    int id;
+
+    if (argint(0, &id) < 0)
+      return -1;
+
+    return lockresource(id);
+}
+
+int
+sys_release(void){
+    int id;
+
+    if (argint(0, &id) < 0)
+      return -1;
+
+    return releaseresource(id);
+}
