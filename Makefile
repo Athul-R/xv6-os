@@ -169,7 +169,9 @@ UPROGS=\
 	_cat\
 	_echo\
 	_forktest\
+	_genlong\
 	_grep\
+	_head\
 	_init\
 	_kill\
 	_ln\
@@ -182,8 +184,10 @@ UPROGS=\
 	_wc\
 	_zombie\
 
-fs.img: mkfs README $(UPROGS)
-	./mkfs fs.img README $(UPROGS)
+TESTFILES=a.txt b.txt
+
+fs.img: mkfs README $(UPROGS) $(TESTFILES)
+	./mkfs fs.img README $(UPROGS) $(TESTFILES)
 
 -include *.d
 
